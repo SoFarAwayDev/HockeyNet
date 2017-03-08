@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26206.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CAD431EB-5505-4578-9BAE-B5BCBB011842}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C010B27B-C77A-448D-B46E-31BB3E95E867}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HockeyNet", "src\HockeyNet\HockeyNet.csproj", "{416A7FCD-FEB6-4EDC-B164-15930E5C5F8E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{416A7FCD-FEB6-4EDC-B164-15930E5C5F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{416A7FCD-FEB6-4EDC-B164-15930E5C5F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{416A7FCD-FEB6-4EDC-B164-15930E5C5F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{416A7FCD-FEB6-4EDC-B164-15930E5C5F8E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{416A7FCD-FEB6-4EDC-B164-15930E5C5F8E} = {CAD431EB-5505-4578-9BAE-B5BCBB011842}
+	EndGlobalSection
+EndGlobal
