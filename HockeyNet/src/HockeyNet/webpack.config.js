@@ -12,7 +12,7 @@ var vendorPackages = Object.keys(pkg.dependencies).filter(function (el) {
  * Default webpack configuration for development
  */
 var config = {
-	devtool: 'eval-source-map',
+	devtool: 'source-map',
 	cache: true,
 	entry: {
 		main: path.join(__dirname, "app", "App.js"),

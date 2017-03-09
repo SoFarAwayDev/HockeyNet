@@ -8,11 +8,12 @@ class Video extends Component {
         super(props);
     }
     render() {
+        
         return (
             <div>
                 <Player
                     playsInline
-                    src={'http://media.w3.org/2010/05/sintel/trailer.mp4'}
+                    src={this.props.filePath}
                 />
             </div>
         );
