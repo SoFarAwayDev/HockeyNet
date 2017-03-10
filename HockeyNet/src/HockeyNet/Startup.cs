@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.IO;
+using HockeyNet.Helpers;
 
 namespace HockeyNet
 {
@@ -25,7 +27,8 @@ namespace HockeyNet
                 // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
-            Configuration = builder.Build();
+            Configuration = builder.Build(); 
+            Directory.CreateDirectory(string.Format("wwwroot/{0}", Configuration.GetValue<string>("CommonSettings:VideoFolder")));
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -33,10 +36,22 @@ namespace HockeyNet
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<Microsoft.AspNetCore.Http.Features.FormOptions>(x =>
+            {
+                x.ValueLengthLimit = int.MaxValue;
+                x.MultipartBodyLengthLimit = int.MaxValue;
+                x.ValueCountLimit = int.MaxValue;
+
+            });
+            var commonSettings = Configuration.GetSection("CommonSettings");
+            services.Configure<CommonSettings>(commonSettings);
+
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddMvc();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

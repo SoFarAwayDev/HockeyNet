@@ -4,8 +4,8 @@ var agent = require('superagent-promise')(require('superagent'), Promise);
 
 
 let commonAPI = {
-  uploadFiles(files, callback) {
-      var req = agent.post('/upload');
+    uploadFiles(files, callback) {
+        var req = agent.post(`${constants.API}/upload`);
       files.forEach((file)=> {
           req.attach('videoFile', file);
       });
@@ -13,7 +13,7 @@ let commonAPI = {
   },
   
   getTimeStamps(fileName){
-    return fetch(`/getTimeStamps`, {
+      return fetch(`${constants.API}/getTimeStamps`, {
       method: 'post',
       headers: {'Content-Type': 'application/json',},
       body: JSON.stringify({fileName})

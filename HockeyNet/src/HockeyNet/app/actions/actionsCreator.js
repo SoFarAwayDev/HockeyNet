@@ -7,23 +7,25 @@ let actionsCreator = {
     return (dispatch) => {
       commonApi.uploadFiles(files)
         .then((result) => {
-          dispatch({
+            dispatch({
             type: constants.VIDEO_UPLOADED,
             filePath: result.body.filePath
           });
-          actionsCreator.getTimeStamps(result.body.fileName);
+          dispatch(actionsCreator.getTimeStamps(result.body.fileName));
         })
     }
   },
 
   getTimeStamps(fileName){
-    commonApi.getTimeStamps(fileName)
-      .then((result) => {
-        dispatch({
-          type: constants.TIME_STAMPS_RESEVED,
-          timeStamps: result.timeStamps
-        });
-      })
+      return (dispatch) => {
+          commonApi.getTimeStamps(fileName)
+              .then((result) => {
+                  dispatch({
+                      type: constants.TIME_STAMPS_RESEVED,
+                      timeStamps: result.timeStamps
+                  });
+              })
+      }
   }
 };
 
