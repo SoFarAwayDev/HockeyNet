@@ -5,14 +5,17 @@ let actionsCreator = {
 
   uploadFiles(files) {
     return (dispatch) => {
-      commonApi.uploadFiles(files)
-        .then((result) => {
-            dispatch({
-            type: constants.VIDEO_UPLOADED,
-            filePath: result.body.filePath
-          });
-          dispatch(actionsCreator.getTimeStamps(result.body.fileName));
-        })
+        dispatch({
+            type: constants.UPLOADING_STARTED
+        });
+        commonApi.uploadFiles(files)
+            .then((result) => {
+                dispatch({
+                type: constants.VIDEO_UPLOADED,
+                filePath: result.body.filePath
+              });
+              dispatch(actionsCreator.getTimeStamps(result.body.fileName));
+            })
     }
   },
 

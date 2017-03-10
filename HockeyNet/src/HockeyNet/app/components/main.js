@@ -29,15 +29,16 @@ class Main extends Component {
             <div>
                 <Header/>
                 <div className="container content-block">
-                    <Loader loaded={true}>
+                    
                         <div className="col-md-3">
                             <Uploader onFileSelected={this.onFileSelected.bind(this)} />
                         </div>
                         <div className="col-md-8">
-                            <Video filePath={this.props.filePath} timeSeek={this.props.timeSeek} />
-                            <TimeStamps stamps={this.props.timeStamps} onTimeSeek={this.onTimeSeek.bind(this)}/>
+                            <Loader loaded={!this.props.isLoading} className={this.props.isLoading ? "loader-spin" : ""}>
+                                <Video filePath={this.props.filePath} timeSeek={this.props.timeSeek} />
+                                <TimeStamps stamps={this.props.timeStamps} onTimeSeek={this.onTimeSeek.bind(this)} />
+                            </Loader>
                         </div>
-                    </Loader>
                 </div>
                 <Footer/>
             </div>
@@ -53,7 +54,8 @@ function mapStoreToProps(storeState) {
   return {
     timeStamps: storeState.commonReducer.timeStamps,
     filePath: storeState.commonReducer.filePath,
-    timeSeek: storeState.commonReducer.timeSeek
+    timeSeek: storeState.commonReducer.timeSeek,
+    isLoading: storeState.commonReducer.isLoading
   }
 }
 
