@@ -19,12 +19,18 @@ let actionsCreator = {
   getTimeStamps(fileName){
       return (dispatch) => {
           commonApi.getTimeStamps(fileName)
-              .then((result) => {
+              .then((timeStamps) => {
                   dispatch({
                       type: constants.TIME_STAMPS_RESEVED,
-                      timeStamps: result.timeStamps
+                      timeStamps: timeStamps
                   });
               })
+      }
+  },
+  seekVideo(time) {
+      return {
+          type: constants.SEEK_VIDEO,
+          time: time
       }
   }
 };

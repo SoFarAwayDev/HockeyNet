@@ -3,7 +3,8 @@ import update from 'react-addons-update';
 
 let initialState = {
   filePath: '',
-  timeStamps: []
+  timeStamps: [],
+  timeSeek: 0
 };
 const initialAction = { type: 'initial state'}
 
@@ -14,10 +15,13 @@ const common = (state = initialState, action = initialAction) => {
             return update(state, {
                 filePath: { $set: action.filePath }
             });
-
         case constants.TIME_STAMPS_RESEVED:
             return update(state, {
                 timeStamps: { $set: action.timeStamps }
+            });
+        case constants.SEEK_VIDEO:
+            return update(state, {
+                timeSeek: { $set: action.time }
             });
 
         default:

@@ -51,7 +51,7 @@ namespace HockeyNet.Controllers
         [Route("getTimeStamps")]
         public IActionResult GetTimeStamps([FromBody]GetTimeStamps getTimeStamps)
         {
-            var range = Enumerable.Range(1, 40);
+            var range = Enumerable.Range(0, 40);
 
             var stampsList = new List<TimeStamp>();
 

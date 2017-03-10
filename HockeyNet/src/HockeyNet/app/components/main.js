@@ -17,7 +17,11 @@ class Main extends Component {
 
 
     onFileSelected(files){
-      this.props.uploadVideo(files);
+        this.props.uploadVideo(files);
+    }
+
+    onTimeSeek(time) {
+        this.props.seekVideo(time);
     }
 
     render() {
@@ -30,8 +34,8 @@ class Main extends Component {
                             <Uploader onFileSelected={this.onFileSelected.bind(this)} />
                         </div>
                         <div className="col-md-8">
-                            <Video filePath={this.props.filePath} />
-                            <TimeStamps filePath={this.props.timeStamps}/>
+                            <Video filePath={this.props.filePath} timeSeek={this.props.timeSeek} />
+                            <TimeStamps stamps={this.props.timeStamps} onTimeSeek={this.onTimeSeek.bind(this)}/>
                         </div>
                     </Loader>
                 </div>
@@ -45,16 +49,18 @@ class Main extends Component {
 
 
 function mapStoreToProps(storeState) {
-  
+    debugger;
   return {
     timeStamps: storeState.commonReducer.timeStamps,
-    filePath: storeState.commonReducer.filePath
+    filePath: storeState.commonReducer.filePath,
+    timeSeek: storeState.commonReducer.timeSeek
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    uploadVideo: (files) => dispatch(actions.uploadFiles(files))
+      uploadVideo: (files) => dispatch(actions.uploadFiles(files)),
+      seekVideo: (time) => dispatch(actions.seekVideo(time))
   }
 }
 
