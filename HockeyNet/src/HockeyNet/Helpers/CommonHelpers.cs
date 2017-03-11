@@ -17,5 +17,29 @@ namespace HockeyNet.Helpers
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+
+        public static string GetBoundary(string contentType)
+        {
+            var elements = contentType.Split(' ');
+            var element = elements.Where(entry => entry.StartsWith("boundary=")).First();
+            var boundary = element.Substring("boundary=".Length);
+
+            if (boundary.Length >= 2 && boundary[0] == '"' &&
+                boundary[boundary.Length - 1] == '"')
+            {
+                boundary = boundary.Substring(1, boundary.Length - 2);
+            }
+            return boundary;
+        }
+
+        public static string GetFileName(string contentDisposition)
+        {
+            return contentDisposition
+                .Split(';')
+                .First(part => part.Contains("name"))
+                .Split('=')
+                .Last()
+                .Trim('"');
+        }
     }
 }

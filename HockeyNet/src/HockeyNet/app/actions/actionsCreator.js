@@ -6,13 +6,12 @@ let actionsCreator = {
   uploadFiles(files) {
     return (dispatch) => {
         dispatch({
-            type: constants.UPLOADING_STARTED
+            type: constants.UPLOADING_STARTED,
         });
-        commonApi.uploadFiles(files)
+        commonApi.uploadFiles(files, dispatch)
             .then((result) => {
                 dispatch({
-                type: constants.VIDEO_UPLOADED,
-                filePath: result.body.filePath
+                type: constants.VIDEO_UPLOADED
               });
               dispatch(actionsCreator.getTimeStamps(result.body.fileName));
             })

@@ -50,7 +50,6 @@ class Main extends Component {
 
 
 function mapStoreToProps(storeState) {
-    debugger;
   return {
     timeStamps: storeState.commonReducer.timeStamps,
     filePath: storeState.commonReducer.filePath,

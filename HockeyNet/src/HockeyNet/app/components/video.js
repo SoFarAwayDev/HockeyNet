@@ -15,6 +15,11 @@ class Video extends Component {
         }
     } 
 
+    componentDidMount() {
+        debugger;
+        this.player.load();
+    }
+
     render() {
         
         return (

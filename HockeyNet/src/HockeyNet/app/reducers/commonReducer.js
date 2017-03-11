@@ -11,9 +11,13 @@ const initialAction = { type: 'initial state'}
 const common = (state = initialState, action = initialAction) => {
   
     switch (action.type) {
-        case constants.VIDEO_UPLOADED:
+        case constants.VIDEO_UPLOADING_IN_PROGRESS:
             return update(state, {
                 filePath: { $set: action.filePath },
+                isLoading: { $set: false }
+            })
+        case constants.VIDEO_UPLOADED:
+            return update(state, {
                 isLoading: {$set: false}
             });
         case constants.TIME_STAMPS_RESEVED:
@@ -26,7 +30,8 @@ const common = (state = initialState, action = initialAction) => {
             });
         case constants.UPLOADING_STARTED:
             return update(state, {
-                isLoading: { $set: true }
+                isLoading: { $set: true },
+                timeStamps: { $set: [] }
             });
 
         default:
