@@ -6,6 +6,8 @@ import reduxStore from './store/reduxStore';
 import reducers from './reducers/index';
 import main from './components/main';
 import "video-react/dist/video-react.css";
+import "../wwwroot/lib/bootstrap/dist/css/bootstrap.css";
+import "../wwwroot/css/index.scss";
 
 render((
   <Provider store={reduxStore}>

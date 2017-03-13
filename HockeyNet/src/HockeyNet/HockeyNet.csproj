@@ -11,6 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\css\constants.scss" />
+    <Content Include="wwwroot\css\index.scss" />
+    <Content Include="wwwroot\css\site.sass" />
+    <Content Include="wwwroot\css\StyleSheet.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="wwwroot\**\*;**\*.cshtml;appsettings.json;web.config">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
