@@ -17,7 +17,11 @@ class Main extends Component {
 
 
     onFileSelected(files){
-      this.props.uploadVideo(files);
+        this.props.uploadVideo(files);
+    }
+
+    onTimeSeek(time) {
+        this.props.seekVideo(time);
     }
 
     render() {
@@ -25,15 +29,16 @@ class Main extends Component {
             <div>
                 <Header/>
                 <div className="container content-block">
-                    <Loader loaded={true}>
+                    
                         <div className="col-md-3">
                             <Uploader onFileSelected={this.onFileSelected.bind(this)} />
                         </div>
                         <div className="col-md-8">
-                            <Video filePath={this.props.filePath} />
-                            <TimeStamps filePath={this.props.timeStamps}/>
+                            <Loader loaded={!this.props.isLoading} className={this.props.isLoading ? "loader-spin" : ""}>
+                                <Video filePath={this.props.filePath} timeSeek={this.props.timeSeek} />
+                                <TimeStamps stamps={this.props.timeStamps} onTimeSeek={this.onTimeSeek.bind(this)} />
+                            </Loader>
                         </div>
-                    </Loader>
                 </div>
                 <Footer/>
             </div>
@@ -45,16 +50,19 @@ class Main extends Component {
 
 
 function mapStoreToProps(storeState) {
-  
+    debugger;
   return {
     timeStamps: storeState.commonReducer.timeStamps,
-    filePath: storeState.commonReducer.filePath
+    filePath: storeState.commonReducer.filePath,
+    timeSeek: storeState.commonReducer.timeSeek,
+    isLoading: storeState.commonReducer.isLoading
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    uploadVideo: (files) => dispatch(actions.uploadFiles(files))
+      uploadVideo: (files) => dispatch(actions.uploadFiles(files)),
+      seekVideo: (time) => dispatch(actions.seekVideo(time))
   }
 }
 
